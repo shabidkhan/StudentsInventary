@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Update</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                $('input[id="SignUp"]').attr('disabled',true);
+                $('form[id="SignUpForm"]').on('keyup',function(){
+                    if($(this.fname).val().length>=3 & $(this.lname).val().length>=2 & $(this.pnumber).val().length>=10 & $(this.addresh).val().length>=6 & $(this.dob).val().length>=6 ){
+                        $('input[id="SignUp"]').attr('disabled',false);
+
+                        document.getElementById("SignUp").style.color="green";
+                        document.getElementById("SignUp").value="Submit";
+                    }else{
+                        $('input[id="SignUp"]').attr('disable');
+                        document.getElementById("SignUp").style.color="red";
+                        document.getElementById("SignUp").value="Invalid";
+
+                    }
+                });
+            });
+        </script>
+         <style>
+            body {
+                background-repeat: no-repeat;
+                background-size: 100% 100%;
+            }
+            .page{
+                height: 100vh; 
+                display: flex; 
+                align-items: center; 
+                justify-content: center; 
+                flex-direction: column; 
+                text-align: center;
+            }
+            p{
+                color: aliceblue;
+            }
+            a{
+                align-self :flex-start;
+            }
+            .Button{
+            background-color:midnightblue;
+            color: aliceblue;
+            }
+            .Input{
+            background-color:darkgreen;
+            }
+            h1{
+            color: aquamarine; 
+            font-style:italic;
+            }
+        </style>
+        
+    </head>
+    <body style="background-image: url('https://eskipaper.com/images/green-abstract-3.jpg');">
+        <div>
+            <a href="../back" >
+                <button>
+                    <-Back
+                </button>
+                </a>
+            <div class="page" >
+                
+                <h1>
+                    Update Page
+                </h1><br>
+                <form id="SignUpForm" method="POST" action="edit">
+                    <p>First Name : <input  class = "Input" id="fname" type="text" name="fname" placeholder="First Name"></p>
+                    <p> Last Name : <input  class = "Input" id="lname" type="text" name="lname" placeholder="Last Name"></p>
+                    <p> Phone no. : <input  class = "Input" id="pnumber" type="number" name="pnumber" placeholder="Phone Number"></p>
+                    <p>_Addresh : <input  class = "Input" id="addresh" type="text" name="addresh" placeholder="Addresh"></p>
+                    <p>Date of birth : <input  class = "Input" id="dob" type="date" name="dob" placeholder="Date of birth"></p>
+                    <input   class = "Button" id="SignUp" type="submit" value=Submit><br>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

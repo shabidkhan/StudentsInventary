@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>LogIn</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                $('input[id="LogIn"]').attr('disabled',true);
+                $('form[id="LogInForm"]').on('keyup',function(){
+                    if($(this.username).val().length>=6 & $(this.password).val().length>=6){
+                        $('input[id="LogIn"]').attr('disabled',false);
+
+                        document.getElementById("LogIn").style.color="green";
+                        document.getElementById("LogIn").value="LogIn";
+                    }else{
+                        $('input[id="LogIn"]').attr('disable');
+                        document.getElementById("LogIn").style.color="red";
+                        document.getElementById("LogIn").value="Invalid";
+
+                    }
+                });
+            });
+        </script>
+        <style>
+            body {
+                background-repeat: no-repeat;
+                background-size: 100% 100%;
+            }
+            .page{
+                height: 100vh; 
+                display: flex; 
+                align-items: center; 
+                justify-content: center; 
+                flex-direction: column; 
+                text-align: center;
+            }
+            p{
+                color: aliceblue;
+            }
+            a{
+                align-self :flex-start;
+            }
+            .Button{
+            background-color:midnightblue;
+            color: aliceblue;
+            }
+            .Input{
+            background-color:darkgreen;
+            }
+            h1{
+            color: aquamarine; 
+            font-style:italic;
+            }
+        </style>
+    </head>
+    <body style="background-image: url('https://www.wallpapers4u.org/wp-content/uploads/abstract_blue_green_shiny_443_1920x1080.jpg');">
+        <div>
+            <a href="SignUp">
+                <button>
+                    SignUp
+                </button>
+                </a>
+            <div class="page" >
+            
+                <h1>
+                    LogIn Page
+                </h1><br>
+                <form id="LogInForm" method="POST" action=LoggedIn>
+                    <input class = "Input" id ="username" type="text" name="username" placeholder="Email" ><br><br>
+                    <input class = "Input"  id ='password' type="password" name="password" placeholder="Password"><br><br>
+                    <input class = "Button" id="LogIn" type="submit" value="LogIn" >
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
