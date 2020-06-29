@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Article</title>
+        <style>
+            body {
+                background-repeat: no-repeat;
+                background-size: 100% 100%;
+            }
+            .page{
+                height: 100vh; 
+                display: flex; 
+                align-items: center; 
+                justify-content: center; 
+                flex-direction: column; 
+                text-align: center;
+            }
+            a{
+                align-self :flex-start;
+            }
+            .Button{
+            background-color:midnightblue;
+            color: aliceblue;
+            }
+            button{
+                color: red;
+            }
+            h1{
+            color: aquamarine; 
+            font-style:italic;
+            }
+        </style>
+    </head>
+    <body style="background-image: url('https://static.vecteezy.com/system/resources/previews/000/688/199/non_2x/abstract-3d-technology-and-science-neon-visualization-vector.jpg');">
+        <div>
+            <a  href="/">
+                <button>
+                    LogOut
+                </button>
+                </a>
+            <div class="page" >
+            
+                <h1>
+                    Article
+                </h1><br>
+                <p>
+                    You are Admin 
+                </p>
+                <form id="LogInForm" method="POST"  action="get">
+
+                    
+                    <input class = "Input" id ="username" type="text" name="username" placeholder="choose Email" ><br><br>
+   
+                    <input class = "Button" id="LogIn" type="submit" value="View" >
+                    
+                </form><br>
+                <form id="LogInForm" method="POST"  action="put">
+                    <input class = "Button" id="LogIn" type="submit" value="Update" >
+
+                </form><br>
+                <form id="LogInForm" method="POST"  action="delete">
+                    <input class = "Button" id="LogIn" type="submit" value="Delete" >
+
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

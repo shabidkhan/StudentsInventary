@@ -1,2 +1,0 @@
-# StudentsInventary
-Hackathon project

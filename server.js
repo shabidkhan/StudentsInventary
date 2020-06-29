@@ -13,6 +13,8 @@ var knex = require('knex')({
 
 app.use(bodyParser.urlencoded({extended:true}))
 
+app.use(express.json())
+
 app.get('/',function(req,res){
     res.sendfile('./views/LogIn.html');
 });
@@ -44,8 +46,11 @@ app.post('/LoggedIn',async(req,res)=>{
       console.log('ok');
       PasswordData = await knex("students").where({"Email" :user}).select('password');
       if(pasd == PasswordData[0].password){
+        if (uesr_arr[0].email=="shabid19@navgurukul.org"){
+          res.sendfile('./views/ArticleAdmin.html')
+          }else{
         res.sendfile('./views/Article.html')
-        
+          }
       }else{
         res.send('<h1 style="color:red;">Invalid password go back and try again</h1>')
       }
@@ -88,34 +93,56 @@ app.post('/Signup',async(req,res)=>{
 
 app.post('/get',async(req,res)=>{
   console.log(uesr_arr[0])
-  data = (await knex('students').where({'email':uesr_arr[0].email}).select('*'));
+  if (uesr_arr[0].email=="shabid19@navgurukul.org"){
+    uesr_arr.push({'email':req.body.username})
+  }else{
+    uesr_arr.push(uesr_arr[0])
+  }
+  
+  data = (await knex('students').where({'email':uesr_arr[1].email}).select('*'));
   res.send(data)
 })
 
 app.post('/delete',async(req,res)=>{
-  await knex('students').where({'email':uesr_arr[0].email}).del('*')
-  data = (await knex('students').where({'email':uesr_arr[0].email}).select('*'));
-
+  if (uesr_arr[0].email=="shabid19@navgurukul.org"){
+    uesr_arr.push({'email':req.body.username})
+  }else{
+    uesr_arr.push(uesr_arr[0])
+  }
+  await knex('students').where({'email':uesr_arr[1].email}).del('*')
   res.redirect('/')
 })
 
 app.post('/put',async(req,res)=>{ 
+  if (uesr_arr[0].email=="shabid19@navgurukul.org"){
+    uesr_arr.push({'email':req.body.username})
+  }else{
+    uesr_arr.push(uesr_arr[0])
+  }
   res.sendfile('./Data/update.html')
   
 })
 
 app.post('/edit',async(req,res)=>{
   await knex('students')
-  .where({'email':uesr_arr[0].email})
+  .where({'email':uesr_arr[1].email})
   .update(req.body)
-
-  data = (await knex('students').where({'email':uesr_arr[0].email}).select('*'));
-  res.redirect("/back")
+  res.redirect("/back1")
+  
 })
 
-
+app.get('/back1',(req,res)=>{
+  if (uesr_arr[0].email=='shabid19@navgurukul.org'){
+    res.redirect("/backAdmin")
+  }else{
+  res.redirect("/back")
+  }
+})
 app.get('/back',(req,res)=>{
   res.sendfile('./views/Article.html')
+})
+app.get('/backAdmin',(req,res)=>{
+  res.sendfile('./views/ArticleAdmin.html')
 })
 
 app.listen(2020,()=>{
